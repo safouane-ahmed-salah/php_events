@@ -1,4 +1,4 @@
-<php
+<?php
 
 function _on($action, $fn){
 	global $__ACTIONS;
