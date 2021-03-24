@@ -1,4 +1,4 @@
-# php_events
+# PHP Events
 simulation of javascript event in php
 
 # usage: 
