@@ -1,17 +1,21 @@
 <?php
 
-function _on($action, $fn){
-	global $__ACTIONS;
-	if(is_callable($fn)) $__ACTIONS[$action][] = $fn;
-}
+namesapce ActionManager;
 
-function _trigger($action, ...$args){
-	global $__ACTIONS;
-	$ret = $args[0] ?? null;
-	if(!empty($__ACTIONS[$action])){  
-		foreach($__ACTIONS[$action] as $fn) 
-			$ret = call_user_func_array($fn, $args);
-	}
+class Action{
+	private static $actions = [];
 	
-	return $ret;
+	static function on($action, $fn){
+		if(is_callable($fn)) self::$actions[$action][] = $fn;
+	}
+
+	static function trigger($action, ...$args){
+		$ret = $args[0] ?? null;
+		if(!empty(self::$actions[$action])){  
+			foreach(self::$actions[$action] as $fn) 
+				$ret = call_user_func_array($fn, $args);
+		}
+		
+		return $ret;
+	}
 }
