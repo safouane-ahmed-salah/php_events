@@ -3,10 +3,14 @@ simulation of javascript event in php
 
 # usage: 
 
-_on('test', function($a = '', $b =''){ return $a; });
+```php
+use ActionManager\Action;
 
-_on('test', function($a=''){ return "b"; });
+Action::on('test', function($a = '', $b =''){ return $a; });
 
-$a = _trigger('test', '1', '2');
+Action::on('test', function($a=''){ return "b"; });
+
+$a = Action::trigger('test', '1', '2');
 
 print_r($a); // results: b
+```
